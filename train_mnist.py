@@ -22,12 +22,17 @@ def main():
                         help='Resume the training from snapshot')
     parser.add_argument('--unit', '-u', type=int, default=1000,
                         help='Number of units')
+    parser.add_argument('--optimizer', '-op',
+                        choices=('SGD', 'MomentumSGD', 'NesterovAG', 'AdaGrad',
+                                 'AdaDelta', 'RMSprop', 'Adam'),
+                        default='SGD', help='optimization type')
     args = parser.parse_args()
 
     print('GPU: {}'.format(args.gpu))
     print('# unit: {}'.format(args.unit))
     print('# Minibatch-size: {}'.format(args.batchsize))
     print('# epoch: {}'.format(args.epoch))
+    print('optimizer: {}'.format(args.optimizer))
     print('')
 
     # Set up a neural network to train
@@ -37,7 +42,20 @@ def main():
         model.to_gpu()
 
     # Setup an optimizer
-    optimizer = chainer.optimizers.Adam()
+    if args.optimizer == 'SGD':
+        optimizer = chainer.optimizers.SGD()
+    elif args.optimizer == 'MomentumSGD':
+        optimizer = chainer.optimizers.MomentumSGD()
+    elif args.optimizer == 'NesterovAG':
+        optimizer = chainer.optimizers.NesterovAG()
+    elif args.optimizer == 'AdaGrad':
+        optimizer = chainer.optimizers.AdaGrad()
+    elif args.optimizer == 'AdaDelta':
+        optimizer = chainer.optimizers.AdaDelta()
+    elif args.optimizer == 'RMSprop':
+        optimizer = chainer.optimizers.RMSprop()
+    elif args.optimizer == 'Adam':
+        optimizer = chainer.optimizers.Adam()
     optimizer.setup(model)
 
     # Load the MNIST dataset
