@@ -30,7 +30,7 @@ def plot_result(logfiles, target='validation/main/accuracy', outfile=None):
         plt.show()
 
 
-if __name__ == '__main__':
+def opt():
     logfiles = [('SGD', 'result_SGD/log'),
                 ('MomentumSGD', 'result_MomentumSGD/log'),
                 ('NesterovAG', 'result_NesterovAG/log'),
@@ -43,3 +43,24 @@ if __name__ == '__main__':
     plot_result(logfiles, 'main/accuracy', 'opt_acc.png')
     plot_result(logfiles, 'validation/main/loss', 'opt_val_loss.png')
     plot_result(logfiles, 'validation/main/accuracy', 'opt_val_acc.png')
+
+
+def unit():
+    logfiles = [('32', 'result_unit_32/log'),
+                ('64', 'result_unit_64/log'),
+                ('128', 'result_unit_128/log'),
+                ('256', 'result_unit_256/log'),
+                ('512', 'result_unit_512/log'),
+                ('1024', 'result_unit_1024/log'),
+                ('2048', 'result_unit_2048/log'),
+                ('4096', 'result_unit_4096/log')]
+
+    plot_result(logfiles, 'main/loss', 'unit_loss.png')
+    plot_result(logfiles, 'main/accuracy', 'unit_acc.png')
+    plot_result(logfiles, 'validation/main/loss', 'unit_val_loss.png')
+    plot_result(logfiles, 'validation/main/accuracy', 'unit_val_acc.png')
+
+
+if __name__ == '__main__':
+    # opt()
+    unit()
