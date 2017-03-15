@@ -87,8 +87,21 @@ def activation():
     plot_result(logfiles, 'validation/main/accuracy', 'act_val_acc.png')
 
 
+def cnn():
+    logfiles = [('CNN1', 'result_CNN1/log'),
+                ('CNN2', 'result_CNN2/log'),
+                ('CNN3', 'result_CNN3/log'),
+                ('MLP3', 'result_MLP3/log')]
+
+    plot_result(logfiles, 'main/loss', 'cnn_loss.png')
+    plot_result(logfiles, 'main/accuracy', 'cnn_acc.png')
+    plot_result(logfiles, 'validation/main/loss', 'cnn_val_loss.png')
+    plot_result(logfiles, 'validation/main/accuracy', 'cnn_val_acc.png')
+
+
 if __name__ == '__main__':
     # opt()
     # unit()
     # mlp()
-    activation()
+    # activation()
+    cnn()

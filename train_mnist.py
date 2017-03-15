@@ -27,7 +27,8 @@ def main():
                                  'AdaDelta', 'RMSprop', 'Adam'),
                         default='SGD', help='optimization type')
     parser.add_argument('--model', '-m',
-                        choices=('MLP1', 'MLP2', 'MLP3', 'MLP4', 'MLP5'),
+                        choices=('MLP1', 'MLP2', 'MLP3', 'MLP4', 'MLP5',
+                                 'CNN1', 'CNN2', 'CNN3'),
                         default='MLP3', help='model type')
     parser.add_argument('--activation', '-a',
                         choices=('sigmoid', 'tanh', 'relu', 'leaky_relu', 'elu'),
@@ -65,6 +66,12 @@ def main():
         model = MLP4(args.unit, 10, activation)
     elif args.model == 'MLP5':
         model = MLP5(args.unit, 10, activation)
+    elif args.model == 'CNN1':
+        model = CNN1(10)
+    elif args.model == 'CNN2':
+        model = CNN2(10)
+    elif args.model == 'CNN3':
+        model = CNN3(10)
 
     model = L.Classifier(model)
     if args.gpu >= 0:
@@ -89,7 +96,10 @@ def main():
     optimizer.setup(model)
 
     # Load the MNIST dataset
-    train, test = chainer.datasets.get_mnist()
+    if args.model.startswith('CNN'):
+        train, test = chainer.datasets.get_mnist(ndim=3)
+    else:
+        train, test = chainer.datasets.get_mnist()
 
     train_iter = chainer.iterators.SerialIterator(train, args.batchsize)
     test_iter = chainer.iterators.SerialIterator(test, args.batchsize,

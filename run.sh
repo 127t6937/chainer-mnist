@@ -14,6 +14,10 @@
 #     python train_mnist.py --gpu 0 --model $model --out result_$model
 # done
 
-for activation in sigmoid tanh relu leaky_relu elu; do
-    python train_mnist.py --gpu 0 --activation $activation --out result_$activation
+# for activation in sigmoid tanh relu leaky_relu elu; do
+#     python train_mnist.py --gpu 0 --activation $activation --out result_$activation
+# done
+
+for model in CNN1 CNN2 CNN3; do
+    python train_mnist.py --gpu 0 --model $model --out result_$model
 done
