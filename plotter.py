@@ -61,6 +61,20 @@ def unit():
     plot_result(logfiles, 'validation/main/accuracy', 'unit_val_acc.png')
 
 
+def mlp():
+    logfiles = [('#hidden=1', 'result_MLP1/log'),
+                ('#hidden=2', 'result_MLP2/log'),
+                ('#hidden=3', 'result_MLP3/log'),
+                ('#hidden=4', 'result_MLP4/log'),
+                ('#hidden=5', 'result_MLP5/log')]
+
+    plot_result(logfiles, 'main/loss', 'mlp_loss.png')
+    plot_result(logfiles, 'main/accuracy', 'mlp_acc.png')
+    plot_result(logfiles, 'validation/main/loss', 'mlp_val_loss.png')
+    plot_result(logfiles, 'validation/main/accuracy', 'mlp_val_acc.png')
+
+
 if __name__ == '__main__':
     # opt()
-    unit()
+    # unit()
+    mlp()

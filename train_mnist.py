@@ -5,7 +5,7 @@ import chainer.links as L
 from chainer import training
 from chainer.training import extensions
 
-from net import MLP
+from net import *
 
 
 def main():
@@ -26,6 +26,12 @@ def main():
                         choices=('SGD', 'MomentumSGD', 'NesterovAG', 'AdaGrad',
                                  'AdaDelta', 'RMSprop', 'Adam'),
                         default='SGD', help='optimization type')
+    parser.add_argument('--model', '-m',
+                        choices=('MLP1', 'MLP2', 'MLP3', 'MLP4', 'MLP5'),
+                        default='MLP3', help='model type')
+    parser.add_argument('--activation', '-a',
+                        choices=('sigmoid', 'tanh', 'relu'),
+                        default='relu')
     args = parser.parse_args()
 
     print('GPU: {}'.format(args.gpu))
@@ -33,10 +39,30 @@ def main():
     print('# Minibatch-size: {}'.format(args.batchsize))
     print('# epoch: {}'.format(args.epoch))
     print('optimizer: {}'.format(args.optimizer))
+    print('model type: {}'.format(args.model))
+    print('activation: {}'.format(args.activation))
     print('')
 
     # Set up a neural network to train
-    model = L.Classifier(MLP(args.unit, 10))
+    if args.activation == 'sigmoid':
+        activation = F.sigmoid
+    elif args.activation == 'tanh':
+        activation = F.tanh
+    elif args.activation == 'relu':
+        activation = F.relu
+
+    if args.model == 'MLP1':
+        model = MLP1(args.unit, 10, activation)
+    elif args.model == 'MLP2':
+        model = MLP2(args.unit, 10, activation)
+    elif args.model == 'MLP3':
+        model = MLP3(args.unit, 10, activation)
+    elif args.model == 'MLP4':
+        model = MLP4(args.unit, 10, activation)
+    elif args.model == 'MLP5':
+        model = MLP5(args.unit, 10, activation)
+
+    model = L.Classifier(model)
     if args.gpu >= 0:
         chainer.cuda.get_device(args.gpu).use()
         model.to_gpu()
