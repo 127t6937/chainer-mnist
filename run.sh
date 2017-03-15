@@ -10,6 +10,10 @@
 #     python train_mnist.py --gpu 0 --unit $unit --out result_unit_$unit
 # done
 
-for model in MLP1 MLP2 MLP3 MLP4 MLP5; do
-    python train_mnist.py --gpu 0 --model $model --out result_$model
+# for model in MLP1 MLP2 MLP3 MLP4 MLP5; do
+#     python train_mnist.py --gpu 0 --model $model --out result_$model
+# done
+
+for activation in sigmoid tanh relu leaky_relu elu; do
+    python train_mnist.py --gpu 0 --activation $activation --out result_$activation
 done

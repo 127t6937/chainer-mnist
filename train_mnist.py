@@ -30,7 +30,7 @@ def main():
                         choices=('MLP1', 'MLP2', 'MLP3', 'MLP4', 'MLP5'),
                         default='MLP3', help='model type')
     parser.add_argument('--activation', '-a',
-                        choices=('sigmoid', 'tanh', 'relu'),
+                        choices=('sigmoid', 'tanh', 'relu', 'leaky_relu', 'elu'),
                         default='relu')
     args = parser.parse_args()
 
@@ -50,6 +50,10 @@ def main():
         activation = F.tanh
     elif args.activation == 'relu':
         activation = F.relu
+    elif args.activation == 'leaky_relu':
+        activation = F.leaky_relu
+    elif args.activation == 'elu':
+        activation = F.elu
 
     if args.model == 'MLP1':
         model = MLP1(args.unit, 10, activation)

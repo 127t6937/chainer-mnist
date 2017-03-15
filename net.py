@@ -6,6 +6,7 @@ import chainer.links as L
 class MLP1(chainer.Chain):
 
     def __init__(self, n_units, n_out=10, activation=F.relu):
+        self.activation = activation
         super(MLP1, self).__init__(
             l1=L.Linear(None, n_out)
         )
@@ -17,19 +18,21 @@ class MLP1(chainer.Chain):
 class MLP2(chainer.Chain):
 
     def __init__(self, n_units, n_out=10, activation=F.relu):
+        self.activation = activation
         super(MLP2, self).__init__(
             l1=L.Linear(None, n_units),
             l2=L.Linear(None, n_out)
         )
 
     def __call__(self, x):
-        h1 = activation(self.l1(x))
+        h1 = self.activation(self.l1(x))
         return self.l2(h1)
 
 
 class MLP3(chainer.Chain):
 
     def __init__(self, n_units, n_out=10, activation=F.relu):
+        self.activation = activation
         super(MLP3, self).__init__(
             l1=L.Linear(None, n_units),
             l2=L.Linear(None, n_units),
@@ -37,14 +40,15 @@ class MLP3(chainer.Chain):
         )
 
     def __call__(self, x):
-        h1 = activation(self.l1(x))
-        h2 = activation(self.l2(h1))
+        h1 = self.activation(self.l1(x))
+        h2 = self.activation(self.l2(h1))
         return self.l3(h2)
 
 
 class MLP4(chainer.Chain):
 
     def __init__(self, n_units, n_out=10, activation=F.relu):
+        self.activation = activation
         super(MLP4, self).__init__(
             l1=L.Linear(None, n_units),
             l2=L.Linear(None, n_units),
@@ -53,15 +57,16 @@ class MLP4(chainer.Chain):
         )
 
     def __call__(self, x):
-        h = activation(self.l1(x))
-        h = activation(self.l2(h))
-        h = activation(self.l3(h))
+        h = self.activation(self.l1(x))
+        h = self.activation(self.l2(h))
+        h = self.activation(self.l3(h))
         return self.l4(h)
 
 
 class MLP5(chainer.Chain):
 
     def __init__(self, n_units, n_out=10, activation=F.relu):
+        self.activation = activation
         super(MLP5, self).__init__(
             l1=L.Linear(None, n_units),
             l2=L.Linear(None, n_units),
@@ -71,8 +76,8 @@ class MLP5(chainer.Chain):
         )
 
     def __call__(self, x):
-        h = activation(self.l1(x))
-        h = activation(self.l2(h))
-        h = activation(self.l3(h))
-        h = activation(self.l4(h))
+        h = self.activation(self.l1(x))
+        h = self.activation(self.l2(h))
+        h = self.activation(self.l3(h))
+        h = self.activation(self.l4(h))
         return self.l5(h)

@@ -74,7 +74,21 @@ def mlp():
     plot_result(logfiles, 'validation/main/accuracy', 'mlp_val_acc.png')
 
 
+def activation():
+    logfiles = [('sigmoid', 'result_sigmoid/log'),
+                ('tanh', 'result_tanh/log'),
+                ('relu', 'result_relu/log'),
+                ('leaky_relu', 'result_leaky_relu/log'),
+                ('elu', 'result_elu/log')]
+
+    plot_result(logfiles, 'main/loss', 'act_loss.png')
+    plot_result(logfiles, 'main/accuracy', 'act_acc.png')
+    plot_result(logfiles, 'validation/main/loss', 'act_val_loss.png')
+    plot_result(logfiles, 'validation/main/accuracy', 'act_val_acc.png')
+
+
 if __name__ == '__main__':
     # opt()
     # unit()
-    mlp()
+    # mlp()
+    activation()
