@@ -43,6 +43,27 @@ $ python train_mnist.py
 
 ## Results
 
+ニューラルネットの構造を変えたときのバリデーション精度の比較
+
+- 最適化手法
+
+  ![optimizers](plot/optimizers/opt_val_acc.png)
+
+- 隠れ層のユニット数
+
+  ![unit](plot/unit/unit_val_acc.png)
+
+- 多層パーセプトロンの隠れ層数
+
+  ![mlp](plot/mlp/mlp_val_acc.png)
+
+- 活性化関数
+
+  ![act](plot/act/act_val_acc.png)
+
+- 畳み込みニューラルネットの深さ
+
+  ![cnn](plot/cnn/cnn_val_acc.png)
 
 ## Reference
 
