@@ -4,6 +4,7 @@
 
 - ChainerでMNISTの数字認識分類
 - 実行時に最適化手法、モデルアーキテクチャ、活性化関数を指定できるオプションを追加
+- 複数の`LogReport`ファイルからグラフを作成する`plotter.py`を追加
 
 ## Requirements
 
