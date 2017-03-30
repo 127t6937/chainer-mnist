@@ -40,7 +40,8 @@ $ python train_mnist.py
 - -a (--activation)
 
   - 活性化関数を指定
-  - sigmoid, tanh, relu, leaky_relu, eluのいずれかを指定
+  - MLPモデルでのみ有効
+  - sigmoid, tanh, relu, leaky_relu, eluのいずれかを指定
 
 ## Results
 
