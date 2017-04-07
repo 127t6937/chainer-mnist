@@ -1,5 +1,11 @@
 import argparse
 
+try:
+    import matplotlib
+    matplotlib.use('Agg')
+except ImportError:
+    pass
+
 import chainer
 import chainer.links as L
 from chainer import training
